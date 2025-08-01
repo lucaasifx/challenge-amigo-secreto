@@ -1,5 +1,5 @@
 let secretFriends = [];
-
+let sorteados = [];
 
 function validarEntrada(input) {
     return input == ''? false : true;
@@ -38,6 +38,14 @@ function gerarNumeroAleatorio() {
 
 function sortearAmigo() {
     let result = document.getElementById('resultado');
-    result.innerHTML = secretFriends.length > 0 ? `<li>O amigo secreto sorteado é:${secretFriends[gerarNumeroAleatorio()]}</li>`
-                                                : '';
+    let amigoSorteado = secretFriends[gerarNumeroAleatorio()];
+    while(sorteados.includes(amigoSorteado) && sorteados.length != secretFriends.length)
+        amigoSorteado = secretFriends[gerarNumeroAleatorio()];
+    if(sorteados.length == secretFriends.length)
+        result.innerHTML = 'Todos os amigos foram sorteados';
+    else {
+        result.innerHTML = secretFriends.length > 0 ? `<li>O amigo secreto sorteado é: ${amigoSorteado}</li>`
+                                                    : '';
+        sorteados.push(amigoSorteado);
+    }
 }
