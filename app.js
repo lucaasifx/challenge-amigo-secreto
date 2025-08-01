@@ -30,3 +30,14 @@ function listarAmigos() {
     // dessa forma o DOM é manipulado uma única vez
     listaAmigos.innerHTML = elementoListaAmigos;
 }
+
+function gerarNumeroAleatorio() {
+    // o numero deve estar entre 0 e secretFriends.length - 1 (índices válidos)
+    return Math.floor(Math.random() * secretFriends.length);
+}
+
+function sortearAmigo() {
+    let result = document.getElementById('resultado');
+    result.innerHTML = secretFriends.length > 0 ? `<li>O amigo secreto sorteado é:${secretFriends[gerarNumeroAleatorio()]}</li>`
+                                                : '';
+}
